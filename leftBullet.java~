@@ -1,0 +1,63 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class leftBullet here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class leftBullet extends Animal
+{
+
+    
+    /**
+     * Act - do whatever the leftBullet wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        move(-15);
+       
+       
+         if(canSee(Ground.class)) {
+        getWorld().removeObject(this);
+    return;   
+    }
+        disapearAtEdge();
+        bImpact();
+        takeExplosionTimer();
+    } 
+    private int ExplosionTimer = 0;
+    private boolean isExplosion = false;
+    public void disapearAtEdge(){
+     if(atWorldEdge()) {
+        getWorld().removeObject(this);
+        return;
+        }
+    }  
+     public void bImpact(){
+      
+         
+         for(Spree s : (List <Spree>)getWorld().getObjects(Spree.class)) {
+        if(intersects(p)) {
+         setImage("bulletImpact.png");  
+         isExplosion = true;
+    	}
+        
+      }
+      
+    }
+    public void takeExplosionTimer() {
+        if(isExplosion == true){
+           ExplosionTimer++;
+            
+        }
+        if(ExplosionTimer == 1){
+            ExplosionTimer = 0;
+            getWorld().removeObject(this);
+            
+        }
+        
+    }
+}

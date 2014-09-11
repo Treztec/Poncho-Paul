@@ -1,0 +1,202 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
+
+/**
+ * Write a description of class SpaceMan2 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class SpaceMan2 extends Animal {
+
+    private static final double GRAVITY = 0.6;
+    private static final int MOVE_SPEED = 5;
+
+    private static final GreenfootImage bullet = new GreenfootImage("haloFire.png");
+
+    private static final GreenfootImage[] rFrames = {
+            new GreenfootImage("hRRun1.png"),
+            new GreenfootImage("hRRun2.png"),
+            new GreenfootImage("hRRun3.png"),
+            new GreenfootImage("hRRun4.png"),
+            new GreenfootImage("hRRun5.png"),
+            new GreenfootImage("hRRun6.png"),
+            new GreenfootImage("hRRun7.png"),
+            new GreenfootImage("hRRun8.png"),
+            new GreenfootImage("hRRun9.png")
+        };
+
+    private static final GreenfootImage[] lFrames = {
+            new GreenfootImage("hLRun1.png"),
+            new GreenfootImage("hLRun2.png"),
+            new GreenfootImage("hLRun3.png"),
+            new GreenfootImage("hLRun4.png"),
+            new GreenfootImage("hLRun5.png"),
+            new GreenfootImage("hLRun6.png"),
+            new GreenfootImage("hLRun7.png"),
+            new GreenfootImage("hLRun8.png"),
+            new GreenfootImage("hLRun9.png"),
+        };
+
+    private double velocity = 0;
+
+    private Direction direction = Direction.RIGHT;
+    private int frameNum = 0;
+    private boolean lPass, rPass;
+    private int Speed = MOVE_SPEED;
+
+    public void advanceFrame() {
+        frameNum++;
+        frameNum = frameNum % 36;
+        if(direction == Direction.RIGHT) {
+            setImage(rFrames[frameNum / 4]);
+        }
+        else {
+            setImage(lFrames[frameNum / 4]);
+        }
+    }
+
+    public boolean isOnGround() {
+        return getOneObjectAtOffset(0,getImage().getHeight()/2+1, Ground.class) != null;
+    }
+
+    public void act() {
+        if(!isOnGround()) {
+            setLocation(getX(), (int)(getY()+velocity));
+            velocity = velocity + GRAVITY;
+        }
+        else {
+            Ground g = (Ground)getOneObjectAtOffset(0,getImage().getHeight()/2+1, Ground.class);
+            setLocation(getX(), g.getY()-g.getImage().getHeight()/2-getImage().getHeight()/2+1);
+            velocity = 0;
+            handleMotion();
+           scrollWithSquare();
+           scrollWithLSquare();
+
+        }
+       checkForRightWalls();
+       checkForLeftWalls();
+    }
+
+    public void handleMotion() {
+        if(Greenfoot.isKeyDown("d")) {
+            direction = Direction.RIGHT;
+            setLocation(getX()+MOVE_SPEED, getY());
+            advanceFrame();
+        }
+        if(Greenfoot.isKeyDown("a")) {
+            direction = Direction.LEFT;
+            setLocation(getX()-MOVE_SPEED, getY());
+            advanceFrame();
+        }
+    }
+
+       public void scroll(int s){
+       for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
+            g.setLocation(g.getX() + s, g.getY());
+      }
+      
+    }
+       public void scrollLCharacter(int s){
+       for(SpaceMan g: (List<SpaceMan>)getWorld().getObjects(SpaceMan.class)){
+            g.setLocation(g.getX() - s, g.getY());
+      }
+      
+    }
+       public void scrollRCharacter(int s){
+       for(SpaceMan g: (List<SpaceMan>)getWorld().getObjects(SpaceMan.class)){
+            g.setLocation(g.getX() + s, g.getY());
+      }
+      
+    }
+    
+    public boolean isTouching(Class c) {
+        return getOneIntersectingObject(c) != null;
+    }
+    
+     public void scrollWithSquare(){
+      
+       int spriteWidth = getImage().getWidth();
+       int xDistance = (int) (spriteWidth / 4);
+       Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+       if(rightWall == null) {
+           lPass = false;
+           rPass = true;
+         
+        }
+       if(isTouching(ScrollingSqare.class) && lPass == true ) {
+           scroll(-4);
+           scrollLCharacter(5);
+          
+           } else{
+         
+        }
+         
+        }
+        public void scrollWithLSquare(){
+           int spriteWidth = getImage().getWidth();
+           int xDistance = (int) (spriteWidth / -4);
+           Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+          if(LeftWall == null) {
+            lPass = true;
+            rPass = false;
+          
+           }
+           if(isTouching(ScrollingSqare.class) && rPass == true){
+             scroll(4);
+             scrollRCharacter(5);
+            } else {
+             
+            }
+        }
+            /**
+     * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
+     */
+    public boolean checkForRightWalls() {
+       int spriteWidth = getImage().getWidth();
+       int xDistance = (int) (spriteWidth / 2);
+       Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+       if(rightWall == null) {
+         return false;
+        } else {
+            stopByRightWall(rightWall);
+            return true;
+        }
+         
+    }
+    /**
+     * gets location of right wall, stops charecter at position and sets him 5 pixels back
+     */
+    public void stopByRightWall(Actor rightWall) {
+        int rightWallWidth = rightWall.getImage().getWidth();
+        int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
+        scroll(Speed);
+    }
+    
+    /**
+     * checks if left wall is activated, implements conditions in order to apply or not apply left wall code
+     */
+    public boolean checkForLeftWalls() {
+     int spriteWidth = getImage().getWidth();
+     int xDistance = (int) (spriteWidth / -2);
+     Actor LeftWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+     if(LeftWall == null) {
+         return false;
+        } else {
+            stopByLeftWall(LeftWall);
+            return true;
+        }
+         
+     }
+   
+    /**
+     * code to stop charecter by left walls and set them back 5 pixels
+     */
+    public void stopByLeftWall(Actor LeftWall) {
+        int LeftWallWidth = LeftWall.getImage().getWidth();
+        int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
+        scroll(-Speed);
+    }
+    
+    
+}

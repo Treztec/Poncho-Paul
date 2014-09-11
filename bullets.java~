@@ -1,0 +1,51 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class bullets here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class bullets extends Animal
+{
+    /**
+     * Act - do whatever the bullets wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        move(15);
+        
+  
+        if(canSee(Ground.class)) {
+        getWorld().removeObject(this);
+        return;
+    }
+        disapearAtEdge();
+        bImpact();
+        takeExplosionTimer();
+    } 
+    public void disapearAtEdge(){
+     if(atWorldEdge()) {
+        getWorld().removeObject(this);
+        return;
+        }
+    }  
+      private int ExplosionTimer = 0;
+    private boolean isExplosion = false;
+    
+    
+      public void takeExplosionTimer() {
+        if(isExplosion == true){
+             ExplosionTimer++;
+            
+        }
+        if(ExplosionTimer == 1){
+            ExplosionTimer = 0;
+            getWorld().removeObject(this);
+            
+        }
+        
+    }
+   
+}
