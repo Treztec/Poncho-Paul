@@ -1,4 +1,6 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ moveAround()
-numComments=1
+comment0.params=a
+comment0.target=void\ moveAround(greenfoot.Actor)
+comment1.params=
+comment1.target=void\ moveAround()
+numComments=2

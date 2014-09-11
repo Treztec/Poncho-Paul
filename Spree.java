@@ -67,7 +67,7 @@ public class Spree extends BadGuys
 
 public void touchDeath()
 {
-   // Background.endGame();
+    ((Background)getWorld()).endGame();
 }    
        
 

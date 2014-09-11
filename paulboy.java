@@ -1,19 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TheGuy here.
+ * Write a description of class paulboy here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TheGuy extends Animal //implements MoveRandomly
-{    
+public class paulboy extends Actor
+{
     /**
-     * Act - do whatever the TheGuy wants to do. This method is called whenever
+     * Act - do whatever the paulboy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-       RandomMover.moveAround(this);
-    }  
+        // Add your action code here.
+    }    
 }

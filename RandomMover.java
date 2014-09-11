@@ -10,25 +10,31 @@ import greenfoot.Actor;
 //Commented out due to bug
 public class RandomMover extends Actor
 {
-    public void moveAround() {
+    public static void moveAround(Actor a) {
         
-       move(4);
+       a.move(4);
        if (Greenfoot.getRandomNumber(100) < 10) 
        {
-           turn(Greenfoot.getRandomNumber(90) - 45); 
+           a.turn(Greenfoot.getRandomNumber(90) - 45); 
        }
            
-       if (getX() <= 5 || getX() >= getWorld().getWidth() - 5)
+       if (a.getX() <= 5 || a.getX() >= a.getWorld().getWidth() - 5)
        {
-           turn(180);
+           a.turn(180);
        }
        
-       if (getY() <= 5 || getY() >= getWorld().getHeight() - 5)
+       if (a.getY() <= 5 || a.getY() >= a.getWorld().getHeight() - 5)
        {
-           turn(180);
+           a.turn(180);
         }
     
     }
+    
+    public void moveAround() {
+        moveAround(this);
+    }
+    
+    
     //interface MoveRandomly {
      //   void moveAround();
    // }

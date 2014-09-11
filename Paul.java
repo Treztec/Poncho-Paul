@@ -12,8 +12,7 @@ public class Paul extends Animal {
     private static final double GRAVITY = 0.6;
     private static final int MOVE_SPEED = 5;
     private static final int JUMP_SPEED = -10;
-    
-    
+
     private int Delay = 50;
     //private int Speed = 4;
     private double vSpeed = 0.0;
@@ -29,7 +28,7 @@ public class Paul extends Animal {
     private int num = 17;
     private boolean lface;
     private boolean rface = true;
-    private static final int SHOOT_DELAY = 8;
+    private static final int SHOOT_DELAY = 27;
     private boolean canShoot = true;
     private int delayCounter;
     public static final int BG_SCROLL_RATE =1;
@@ -39,7 +38,6 @@ public class Paul extends Animal {
     //private boolean RPass = false;
     private boolean jnum = true;
 
-    
     
     private static final GreenfootImage bullet = new GreenfootImage("haloFire.png");
 
@@ -68,8 +66,7 @@ public class Paul extends Animal {
         };
 
     private double velocity = 0;
-    
-    
+
     private Direction direction = Direction.RIGHT;
     private int frameNum = 0;
     private boolean lPass, rPass;
@@ -91,7 +88,7 @@ public class Paul extends Animal {
     }
 
     public void act() {
-            handleMotion();
+        handleMotion();
         if(!isOnGround()) {
             setLocation(getX(), (int)(getY()+velocity));
             velocity = velocity + GRAVITY;
@@ -101,50 +98,48 @@ public class Paul extends Animal {
             setLocation(getX(), g.getY()-g.getImage().getHeight()/2-getImage().getHeight()/2+1);
             velocity = 0;
 
-           scrollWithSquare();
-           scrollWithLSquare();
+            scrollWithSquare();
+            scrollWithLSquare();
 
         }
-       checkForRightWalls();
-       checkForLeftWalls();
-       checkForCeiling();
-       checkKeys();
+        checkForRightWalls();
+        checkForLeftWalls();
+        checkForCeiling();
+        checkKeys();
     }
 
     private boolean keyDown = false;
     private boolean keyDown2 = false;
-        public void checkKeys() {
-            if(Greenfoot.isKeyDown(Controls.DEBUG1)) {
-                System.out.printf("(%d,%d)%n",getX(),getY());
+    public void checkKeys() {
+        if(Greenfoot.isKeyDown(Controls.DEBUG1)) {
+            System.out.printf("(%d,%d)%n",getX(),getY());
+        }
+        if(!keyDown2 && Greenfoot.isKeyDown(Controls.SHOOT)){
+
+            if(rface == true) {  
+                shootRight();
+
+            } else {
+                shootLeft();
+
             }
-              if(!keyDown2 && Greenfoot.isKeyDown(Controls.SHOOT)){
-      
-        if(rface == true) {  
-       shootRight();
-       
-    
-      } else {
-       shootLeft();
-    
-    
-      }
         }
     }
-    
+
     public void handleMotion() {
         if(Greenfoot.isKeyDown(Controls.RIGHT)) {
             direction = Direction.RIGHT;
             setLocation(getX()+Speed, getY());
             advanceFrame();
-          rface =true;
-          lface =false;            
+            rface =true;
+            lface =false;            
         }
         if(Greenfoot.isKeyDown(Controls.LEFT)) {
             direction = Direction.LEFT;
             setLocation(getX()-MOVE_SPEED, getY());
             advanceFrame();
-          lface = true;
-          rface = false;
+            lface = true;
+            rface = false;
         }
         if(Greenfoot.isKeyDown(Controls.UP) && isOnGround()) {
             velocity = JUMP_SPEED;
@@ -152,79 +147,84 @@ public class Paul extends Animal {
         }
     }
 
-       public void scroll(int s){
-       for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
+    public void scroll(int s){
+        for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
             g.setLocation(g.getX() + s, g.getY());
-      }
-      
+        }
+
     }
-       public void scrollLCharacter(int s){
-       for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
+
+    public void scrollLCharacter(int s){
+        for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
             g.setLocation(g.getX() - s, g.getY());
-      }
-      
+        }
+
     }
-       public void scrollRCharacter(int s){
-       for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
+
+    public void scrollRCharacter(int s){
+        for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
             g.setLocation(g.getX() + s, g.getY());
-      }
-      
+        }
+
     }
-    
+
     public boolean isTouching(Class c) {
         return getOneIntersectingObject(c) != null;
     }
-    
-     public void scrollWithSquare(){
-      
-       int spriteWidth = getImage().getWidth();
-       int xDistance = (int) (spriteWidth / 4);
-       Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-       if(rightWall == null) {
-           lPass = false;
-           rPass = true;
-         
+
+    public void scrollWithSquare(){
+
+        int spriteWidth = getImage().getWidth();
+        int xDistance = (int) (spriteWidth / 4);
+        Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+        if(rightWall == null) {
+            lPass = false;
+            rPass = true;
+
         }
-       if(isTouching(ScrollingSqare.class) && lPass == true ) {
-           scroll(-4);
-           scrollLCharacter(5);
-          
-           } else{
-         
+        if(isTouching(ScrollingSqare.class) && lPass == true ) {
+            scroll(-4);
+            scrollLCharacter(5);
+
+        } else{
+
         }
-         
-        }
-        public void scrollWithLSquare(){
-           int spriteWidth = getImage().getWidth();
-           int xDistance = (int) (spriteWidth / -4);
-           Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-          if(LeftWall == null) {
+
+    }
+
+    public void scrollWithLSquare(){
+        int spriteWidth = getImage().getWidth();
+        int xDistance = (int) (spriteWidth / -4);
+        Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+        if(LeftWall == null) {
             lPass = true;
             rPass = false;
-          
-           }
-           if(isTouching(ScrollingSqare.class) && rPass == true){
-             scroll(4);
-             scrollRCharacter(5);
-            } else {
-             
-            }
+
         }
-            /**
+        if(isTouching(ScrollingSqare.class) && rPass == true){
+            scroll(4);
+            scrollRCharacter(5);
+        } else {
+
+        }
+    }
+
+    /**
      * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
      */
     public boolean checkForRightWalls() {
-       int spriteWidth = getImage().getWidth();
-       int xDistance = (int) (spriteWidth / 2);
-       Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
-       if(rightWall == null) {
-         return false;
+        int spriteWidth = getImage().getWidth();
+        int xDistance = (int) (spriteWidth / 2);
+        Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+        if(rightWall == null) {
+            return false;
         } else {
             stopByRightWall(rightWall);
             return true;
         }
-         
+
     }
+
     /**
      * gets location of right wall, stops charecter at position and sets him 5 pixels back
      */
@@ -233,23 +233,23 @@ public class Paul extends Animal {
         int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
         scroll(Speed);
     }
-    
+
     /**
      * checks if left wall is activated, implements conditions in order to apply or not apply left wall code
      */
     public boolean checkForLeftWalls() {
-     int spriteWidth = getImage().getWidth();
-     int xDistance = (int) (spriteWidth / -2);
-     Actor LeftWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
-     if(LeftWall == null) {
-         return false;
+        int spriteWidth = getImage().getWidth();
+        int xDistance = (int) (spriteWidth / -2);
+        Actor LeftWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+        if(LeftWall == null) {
+            return false;
         } else {
             stopByLeftWall(LeftWall);
             return true;
         }
-         
-     }
-   
+
+    }
+
     /**
      * code to stop charecter by left walls and set them back 5 pixels
      */
@@ -258,8 +258,8 @@ public class Paul extends Animal {
         int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
         scroll(-Speed);
     }
-    
-     /**
+
+    /**
      * if there is a celing then charecter is stoped
      */
     public void bopHead(Actor ceiling) {
@@ -268,33 +268,33 @@ public class Paul extends Animal {
         setLocation(getX(), newY);
         jumping = true;
     }
-    
+
     /**
      * charecter checks for ceiling, using bophead() to stop charecter from traversing ceiling
      */
-          public boolean checkForCeiling() {
-      int spriteHeight = getImage().getHeight();
-      int yDistance = (int) (spriteHeight / -2);
-      
-      Actor ceiling = getOneObjectAtOffset(0, yDistance, Ground.class);
-      if(ceiling != null) {
-        vSpeed = 0;
-        bopHead(ceiling);
-        return true;
-      
-      }else{
-        return false;
-        
-      }
-      
+    public boolean checkForCeiling() {
+        int spriteHeight = getImage().getHeight();
+        int yDistance = (int) (spriteHeight / -2);
+
+        Actor ceiling = getOneObjectAtOffset(0, yDistance, Ground.class);
+        if(ceiling != null) {
+            vSpeed = 0;
+            bopHead(ceiling);
+            return true;
+
+        }else{
+            return false;
+
+        }
+
     }
-    
+
     public void shootRight() {
-      if(canShoot == true) {
-              int spriteWidth = getImage().getWidth();
-        int gunTop = (int) spriteWidth/2;
-         RightBullet b = new RightBullet();
-         getWorld().addObject(b, getX() + gunTop + 13, getY() - 17);
+        if(canShoot == true) {
+            int spriteWidth = getImage().getWidth();
+            int gunTop = (int) spriteWidth/2;
+            RightBullet b = new RightBullet();
+            getWorld().addObject(b, getX() + gunTop + 13, getY() - 17);
             delayCounter = 0;
             canShoot = false;
             return;
@@ -302,21 +302,20 @@ public class Paul extends Animal {
         if(!canShoot && ++delayCounter> SHOOT_DELAY) {
             canShoot = true;
         }
-        }
-    
+    }
+
         
-        
-     public void shootLeft() {
-          if(canShoot == true) {
-             int spriteWidth = getImage().getWidth();
-        int gunTop = (int) spriteWidth/2;
-         leftBullet lb = new leftBullet();
-         getWorld().addObject(lb, getX() - gunTop - 13, getY() - 17);
+    public void shootLeft() {
+        if(canShoot == true) {
+            int spriteWidth = getImage().getWidth();
+            int gunTop = (int) spriteWidth/2;
+            leftBullet lb = new leftBullet();
+            getWorld().addObject(lb, getX() - gunTop - 13, getY() - 17);
             delayCounter = 0;
             canShoot = false;
             return;
         }
         if(!canShoot && ++delayCounter> SHOOT_DELAY) {
             canShoot = true;}
-        }
+    }
 }
