@@ -4,8 +4,8 @@ import java.util.*;
 /**
  * Write a description of class Paul here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author  William Trent 
+ * @version v1.1
  */
 public class Paul extends Animal {
 
@@ -17,7 +17,7 @@ public class Paul extends Animal {
     //private int Speed = 4;
     private double vSpeed = 0.0;
     private double acceleration = .5;
-    private int jSpeed = -16;
+    private int jSpeed = -5;
     private int AnimationCounter = 0;
     private boolean jumping;
     private boolean hitGround = false;
@@ -38,9 +38,7 @@ public class Paul extends Animal {
     //private boolean RPass = false;
     private boolean jnum = true;
 
-    
     private static final GreenfootImage bullet = new GreenfootImage("haloFire.png");
-
     private static final GreenfootImage[] rFrames = {
             new GreenfootImage("hRRun1.png"),
             new GreenfootImage("hRRun2.png"),
@@ -116,206 +114,216 @@ public class Paul extends Animal {
         }
         if(!keyDown2 && Greenfoot.isKeyDown(Controls.SHOOT)){
 
-            if(rface == true) {  
-                shootRight();
-
-            } else {
-                shootLeft();
-
+            switch(direction) {
+                case RIGHT:
+                    shootRight();
+                    break;
+                case LEFT:
+                    shootLeft();
+                    break;
             }
-        }
-    }
+}
 
-    public void handleMotion() {
-        if(Greenfoot.isKeyDown(Controls.RIGHT)) {
-            direction = Direction.RIGHT;
-            setLocation(getX()+Speed, getY());
-            advanceFrame();
-            rface =true;
-            lface =false;            
-        }
-        if(Greenfoot.isKeyDown(Controls.LEFT)) {
-            direction = Direction.LEFT;
-            setLocation(getX()-MOVE_SPEED, getY());
-            advanceFrame();
-            lface = true;
-            rface = false;
-        }
-        if(Greenfoot.isKeyDown(Controls.UP) && isOnGround()) {
-            velocity = JUMP_SPEED;
-            setLocation(getX(),(int)(getY()+velocity));
-        }
-    }
+// Deprecated Code
+//         if(direction == Direction.RIGHT) {  
+//             shootRight();
+// 
+//         } else {
+//             shootLeft();
+// 
+//         }
+    
+}
 
-    public void scroll(int s){
-        for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
-            g.setLocation(g.getX() + s, g.getY());
-        }
+public void handleMotion() {
+if(Greenfoot.isKeyDown(Controls.RIGHT)) {
+direction = Direction.RIGHT;
+setLocation(getX()+Speed, getY());
+advanceFrame();
+rface =true;
+lface =false;            
+}
+if(Greenfoot.isKeyDown(Controls.LEFT)) {
+direction = Direction.LEFT;
+setLocation(getX()-MOVE_SPEED, getY());
+advanceFrame();
+lface = true;
+rface = false;
+}
+if(Greenfoot.isKeyDown(Controls.UP) && isOnGround()) {
+velocity = JUMP_SPEED;
+setLocation(getX(),(int)(getY()+velocity));
+}
+}
 
-    }
+public void scroll(int s){
+for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
+g.setLocation(g.getX() + s, g.getY());
+}
 
-    public void scrollLCharacter(int s){
-        for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
-            g.setLocation(g.getX() - s, g.getY());
-        }
+}
 
-    }
+public void scrollLCharacter(int s){
+for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
+g.setLocation(g.getX() - s, g.getY());
+}
 
-    public void scrollRCharacter(int s){
-        for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
-            g.setLocation(g.getX() + s, g.getY());
-        }
+}
 
-    }
+public void scrollRCharacter(int s){
+for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
+g.setLocation(g.getX() + s, g.getY());
+}
 
-    public boolean isTouching(Class c) {
-        return getOneIntersectingObject(c) != null;
-    }
+}
 
-    public void scrollWithSquare(){
+public boolean isTouching(Class c) {
+return getOneIntersectingObject(c) != null;
+}
 
-        int spriteWidth = getImage().getWidth();
-        int xDistance = (int) (spriteWidth / 4);
-        Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-        if(rightWall == null) {
-            lPass = false;
-            rPass = true;
+public void scrollWithSquare(){
 
-        }
-        if(isTouching(ScrollingSqare.class) && lPass == true ) {
-            scroll(-4);
-            scrollLCharacter(5);
+int spriteWidth = getImage().getWidth();
+int xDistance = (int) (spriteWidth / 4);
+Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+if(rightWall == null) {
+lPass = false;
+rPass = true;
 
-        } else{
+}
+if(isTouching(ScrollingSqare.class) && lPass == true ) {
+scroll(-4);
+scrollLCharacter(5);
 
-        }
+} else{
 
-    }
+}
 
-    public void scrollWithLSquare(){
-        int spriteWidth = getImage().getWidth();
-        int xDistance = (int) (spriteWidth / -4);
-        Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-        if(LeftWall == null) {
-            lPass = true;
-            rPass = false;
+}
 
-        }
-        if(isTouching(ScrollingSqare.class) && rPass == true){
-            scroll(4);
-            scrollRCharacter(5);
-        } else {
+public void scrollWithLSquare(){
+int spriteWidth = getImage().getWidth();
+int xDistance = (int) (spriteWidth / -4);
+Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
+if(LeftWall == null) {
+lPass = true;
+rPass = false;
 
-        }
-    }
+}
+if(isTouching(ScrollingSqare.class) && rPass == true){
+scroll(4);
+scrollRCharacter(5);
+} else {
 
-    /**
-     * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
-     */
-    public boolean checkForRightWalls() {
-        int spriteWidth = getImage().getWidth();
-        int xDistance = (int) (spriteWidth / 2);
-        Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
-        if(rightWall == null) {
-            return false;
-        } else {
-            stopByRightWall(rightWall);
-            return true;
-        }
+}
+}
 
-    }
+/**
+ * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
+ */
+public boolean checkForRightWalls() {
+int spriteWidth = getImage().getWidth();
+int xDistance = (int) (spriteWidth / 2);
+Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+if(rightWall == null) {
+return false;
+} else {
+stopByRightWall(rightWall);
+return true;
+}
 
-    /**
-     * gets location of right wall, stops charecter at position and sets him 5 pixels back
-     */
-    public void stopByRightWall(Actor rightWall) {
-        int rightWallWidth = rightWall.getImage().getWidth();
-        int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
-        scroll(Speed);
-    }
+}
 
-    /**
-     * checks if left wall is activated, implements conditions in order to apply or not apply left wall code
-     */
-    public boolean checkForLeftWalls() {
-        int spriteWidth = getImage().getWidth();
-        int xDistance = (int) (spriteWidth / -2);
-        Actor LeftWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
-        if(LeftWall == null) {
-            return false;
-        } else {
-            stopByLeftWall(LeftWall);
-            return true;
-        }
+/**
+ * gets location of right wall, stops charecter at position and sets him 5 pixels back
+ */
+public void stopByRightWall(Actor rightWall) {
+int rightWallWidth = rightWall.getImage().getWidth();
+int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
+scroll(Speed);
+}
 
-    }
+/**
+ * checks if left wall is activated, implements conditions in order to apply or not apply left wall code
+ */
+public boolean checkForLeftWalls() {
+int spriteWidth = getImage().getWidth();
+int xDistance = (int) (spriteWidth / -2);
+Actor LeftWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
+if(LeftWall == null) {
+return false;
+} else {
+stopByLeftWall(LeftWall);
+return true;
+}
 
-    /**
-     * code to stop charecter by left walls and set them back 5 pixels
-     */
-    public void stopByLeftWall(Actor LeftWall) {
-        int LeftWallWidth = LeftWall.getImage().getWidth();
-        int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
-        scroll(-Speed);
-    }
+}
 
-    /**
-     * if there is a celing then charecter is stoped
-     */
-    public void bopHead(Actor ceiling) {
-        int ceilingHeight = ceiling.getImage().getHeight();
-        int newY = ceiling.getY() + (ceilingHeight + getImage().getHeight())/2;
-        setLocation(getX(), newY);
-        jumping = true;
-    }
+/**
+ * code to stop charecter by left walls and set them back 5 pixels
+ */
+public void stopByLeftWall(Actor LeftWall) {
+int LeftWallWidth = LeftWall.getImage().getWidth();
+int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
+scroll(-Speed);
+}
 
-    /**
-     * charecter checks for ceiling, using bophead() to stop charecter from traversing ceiling
-     */
-    public boolean checkForCeiling() {
-        int spriteHeight = getImage().getHeight();
-        int yDistance = (int) (spriteHeight / -2);
+/**
+ * if there is a celing then charecter is stoped
+ */
+public void bopHead(Actor ceiling) {
+int ceilingHeight = ceiling.getImage().getHeight();
+int newY = ceiling.getY() + (ceilingHeight + getImage().getHeight())/2;
+setLocation(getX(), newY);
+jumping = true;
+}
 
-        Actor ceiling = getOneObjectAtOffset(0, yDistance, Ground.class);
-        if(ceiling != null) {
-            vSpeed = 0;
-            bopHead(ceiling);
-            return true;
+/**
+ * charecter checks for ceiling, using bophead() to stop charecter from traversing ceiling
+ */
+public boolean checkForCeiling() {
+int spriteHeight = getImage().getHeight();
+int yDistance = (int) (spriteHeight / -2);
 
-        }else{
-            return false;
+Actor ceiling = getOneObjectAtOffset(0, yDistance, Ground.class);
+if(ceiling != null) {
+vSpeed = 0;
+bopHead(ceiling);
+return true;
 
-        }
+}else{
+return false;
 
-    }
+}
 
-    public void shootRight() {
-        if(canShoot == true) {
-            int spriteWidth = getImage().getWidth();
-            int gunTop = (int) spriteWidth/2;
-            RightBullet b = new RightBullet();
-            getWorld().addObject(b, getX() + gunTop + 13, getY() - 17);
-            delayCounter = 0;
-            canShoot = false;
-            return;
-        }
-        if(!canShoot && ++delayCounter> SHOOT_DELAY) {
-            canShoot = true;
-        }
-    }
+}
 
-        
-    public void shootLeft() {
-        if(canShoot == true) {
-            int spriteWidth = getImage().getWidth();
-            int gunTop = (int) spriteWidth/2;
-            leftBullet lb = new leftBullet();
-            getWorld().addObject(lb, getX() - gunTop - 13, getY() - 17);
-            delayCounter = 0;
-            canShoot = false;
-            return;
-        }
-        if(!canShoot && ++delayCounter> SHOOT_DELAY) {
-            canShoot = true;}
-    }
+public void shootRight() {
+if(canShoot == true) {
+int spriteWidth = getImage().getWidth();
+int gunTop = (int) spriteWidth/2;
+RightBullet b = new RightBullet();
+getWorld().addObject(b, getX() + gunTop + 13, getY() - 17);
+delayCounter = 0;
+canShoot = false;
+return;
+}
+if(!canShoot && ++delayCounter> SHOOT_DELAY) {
+canShoot = true;
+}
+}
+
+public void shootLeft() {
+if(canShoot == true) {
+int spriteWidth = getImage().getWidth();
+int gunTop = (int) spriteWidth/2;
+leftBullet lb = new leftBullet();
+getWorld().addObject(lb, getX() - gunTop - 13, getY() - 17);
+delayCounter = 0;
+canShoot = false;
+return;
+}
+if(!canShoot && ++delayCounter> SHOOT_DELAY) {
+canShoot = true;}
+}
 }
