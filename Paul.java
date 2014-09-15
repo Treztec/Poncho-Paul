@@ -124,7 +124,7 @@ public class Paul extends Animal {
             }
 }
 
-// Deprecated Code
+// Deprecate Code
 //         if(direction == Direction.RIGHT) {  
 //             shootRight();
 // 
@@ -193,7 +193,8 @@ rPass = true;
 }
 if(isTouching(ScrollingSqare.class) && lPass == true ) {
 scroll(-4);
-scrollLCharacter(5);
+s0......
+crollLCharacter(5);
 
 } else{
 
