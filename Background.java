@@ -27,6 +27,7 @@ public class Background extends World
     {
         GameOver gameover = new GameOver();
         addObject(gameover, 560, 298);
+        Greenfoot.stop();
     }
     
     /**
@@ -141,5 +142,21 @@ public class Background extends World
         counter = new Counter();
         addObject(counter, 937, 59);
         // Cut here
+        scrollingsqare2.setLocation(877, 424);
+        RightScrollingSquare rightscrollingsquare = new RightScrollingSquare();
+        addObject(rightscrollingsquare, 1020, 417);
+        rightscrollingsquare.setLocation(1043, 425);
+        scrollingsqare2.setLocation(926, 419);
+        removeObject(scrollingsqare2);
+        rightscrollingsquare.setLocation(1008, 417);
+        scrollingsqare.setLocation(280, 414);
+        removeObject(scrollingsqare);
+        LeftScrollingSquare leftscrollingsquare = new LeftScrollingSquare();
+        addObject(leftscrollingsquare, 216, 487);
+        leftscrollingsquare.setLocation(183, 518);
+        leftscrollingsquare.setLocation(47, 530);
+        Paul paul = new Paul();
+        addObject(paul, 513, 482);
+        paul.setLocation(529, 507);
     }
 }

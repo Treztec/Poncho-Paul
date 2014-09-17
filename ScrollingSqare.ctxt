@@ -2,4 +2,8 @@
 comment0.params=
 comment0.target=void\ act()
 comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ ScrollingSqare\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=1
+comment1.params=s
+comment1.target=void\ scroll(int)
+comment2.params=s
+comment2.target=void\ scrollCharacter(int)
+numComments=3

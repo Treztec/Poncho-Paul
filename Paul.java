@@ -11,7 +11,7 @@ public class Paul extends Animal {
 
     private static final double GRAVITY = 0.6;
     private static final int MOVE_SPEED = 5;
-    private static final int JUMP_SPEED = -10;
+    private static final int JUMP_SPEED = -10; //speed of jump
 
     private int Delay = 50;
     //private int Speed = 4;
@@ -26,8 +26,8 @@ public class Paul extends Animal {
     private int wCount = 0;
     private long timeMillis;
     private int num = 17;
-    private boolean lface;
-    private boolean rface = true;
+    private static boolean lface;
+    private static boolean rface = true;
     private static final int SHOOT_DELAY = 27;
     private boolean canShoot = true;
     private int delayCounter;
@@ -96,8 +96,8 @@ public class Paul extends Animal {
             setLocation(getX(), g.getY()-g.getImage().getHeight()/2-getImage().getHeight()/2+1);
             velocity = 0;
 
-            scrollWithSquare();
-            scrollWithLSquare();
+            //scrollWithSquare();
+            //scrollWithLSquare();
 
         }
         checkForRightWalls();
@@ -155,7 +155,7 @@ velocity = JUMP_SPEED;
 setLocation(getX(),(int)(getY()+velocity));
 }
 }
-
+/*
 public void scroll(int s){
 for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
 g.setLocation(g.getX() + s, g.getY());
@@ -176,7 +176,6 @@ g.setLocation(g.getX() + s, g.getY());
 }
 
 }
-
 public boolean isTouching(Class c) {
 return getOneIntersectingObject(c) != null;
 }
@@ -193,8 +192,7 @@ rPass = true;
 }
 if(isTouching(ScrollingSqare.class) && lPass == true ) {
 scroll(-4);
-s0......
-crollLCharacter(5);
+scrollLCharacter(5);
 
 } else{
 
@@ -222,6 +220,8 @@ scrollRCharacter(5);
 /**
  * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
  */
+
+
 public boolean checkForRightWalls() {
 int spriteWidth = getImage().getWidth();
 int xDistance = (int) (spriteWidth / 2);
@@ -241,7 +241,7 @@ return true;
 public void stopByRightWall(Actor rightWall) {
 int rightWallWidth = rightWall.getImage().getWidth();
 int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
-scroll(Speed);
+//scroll(Speed);
 }
 
 /**
@@ -266,7 +266,7 @@ return true;
 public void stopByLeftWall(Actor LeftWall) {
 int LeftWallWidth = LeftWall.getImage().getWidth();
 int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
-scroll(-Speed);
+//scroll(-Speed);
 }
 
 /**
@@ -326,5 +326,9 @@ return;
 }
 if(!canShoot && ++delayCounter> SHOOT_DELAY) {
 canShoot = true;}
+}
+
+public static boolean isRight(){
+    return rface;
 }
 }

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class ScrollingSqare here.
@@ -8,12 +9,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ScrollingSqare extends Animal
 {
+    
+    
     /**
      * Act - do whatever the ScrollingSqare wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+       if(isTouching(Paul.class)) {
+           //System.out.println("Hi There");            
+        }
+    }
+    
+    protected void scroll(int s){
+        for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
+            g.setLocation(g.getX() + s, g.getY());
+        }
+    }
+
+    protected void scrollCharacter(int s){
+        for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
+            g.setLocation(g.getX() + s, g.getY());
+        }	
+    }
 }
