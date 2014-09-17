@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class node here.
+ * Write a description of class Sand here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class node extends Animal
+public class Sand extends Animal
 {
     /**
-     * Act - do whatever the node wants to do. This method is called whenever
+     * Act - do whatever the Sand wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

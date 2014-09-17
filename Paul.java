@@ -86,7 +86,9 @@ public class Paul extends Animal {
     }
 
     public void act() {
-        handleMotion();
+        
+        
+        handleMotion(); //Handles the motion
         if(!isOnGround()) {
             setLocation(getX(), (int)(getY()+velocity));
             velocity = velocity + GRAVITY;
@@ -155,6 +157,7 @@ velocity = JUMP_SPEED;
 setLocation(getX(),(int)(getY()+velocity));
 }
 }
+
 /*
 public void scroll(int s){
 for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
@@ -220,6 +223,7 @@ scrollRCharacter(5);
 /**
  * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
  */
+
 
 
 public boolean checkForRightWalls() {
@@ -327,7 +331,9 @@ return;
 if(!canShoot && ++delayCounter> SHOOT_DELAY) {
 canShoot = true;}
 }
-
+/*
+ * Returns a boolean for whether or not paul is facing right
+ */
 public static boolean isRight(){
     return rface;
 }

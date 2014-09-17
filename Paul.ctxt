@@ -12,6 +12,7 @@ comment12.params=
 comment12.target=void\ shootLeft()
 comment13.params=
 comment13.target=boolean\ isRight()
+comment13.text=\r\n\ Returns\ a\ boolean\ for\ whether\ or\ not\ paul\ is\ facing\ right\r\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
