@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class DeathBlock extends Animal
+public class DeathBlock extends Animal implements ScrollsOnScreen
 {
     /**
      * Act - do whatever the DeathBlock wants to do. This method is called whenever

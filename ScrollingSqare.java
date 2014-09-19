@@ -23,13 +23,13 @@ public abstract class ScrollingSqare extends Animal
     }
     
     protected void scroll(int s){
-        for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
+        for(ScrollsOnScreen g: (List<ScrollsOnScreen>)getWorld().getObjects(ScrollsOnScreen.class)){
             g.setLocation(g.getX() + s, g.getY());
         }
         
-        for(Sand sa : (List<Sand>) getWorld().getObjects(Sand.class)) {
-            sa.setLocation(sa.getX() + s, sa.getY());
-        }
+//         for(Sand sa : (List<Sand>) getWorld().getObjects(Sand.class)) {
+//             sa.setLocation(sa.getX() + s, sa.getY());
+//         }
     }
 
     protected void scrollCharacter(int s){
