@@ -7,7 +7,7 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class ScrollingSqare extends Animal
+public class ScrollingSqare extends Animal
 {
     
     
@@ -26,15 +26,18 @@ public abstract class ScrollingSqare extends Animal
         for(ScrollsOnScreen g: (List<ScrollsOnScreen>)getWorld().getObjects(ScrollsOnScreen.class)){
             g.setLocation(g.getX() + s, g.getY());
         }
+<<<<<<< HEAD
         
 //         for(Sand sa : (List<Sand>) getWorld().getObjects(Sand.class)) {
 //             sa.setLocation(sa.getX() + s, sa.getY());
 //         }
+=======
+>>>>>>> parent of 4ea3603... Updated Scroll code
     }
 
     protected void scrollCharacter(int s){
         for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
             g.setLocation(g.getX() + s, g.getY());
-        }   
+        }	
     }
 }

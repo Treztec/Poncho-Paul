@@ -12,10 +12,14 @@ comment11.text=\r\n\ charecter\ checks\ for\ ceiling,\ using\ bophead()\ to\ sto
 comment12.params=
 comment12.target=void\ shootRight()
 comment13.params=
+<<<<<<< HEAD
 comment13.target=void\ shootLeft()
 comment14.params=
 comment14.target=boolean\ isRight()
 comment14.text=\r\n\ Returns\ a\ boolean\ for\ whether\ or\ not\ paul\ is\ facing\ right\r\n
+=======
+comment13.target=boolean\ isRight()
+>>>>>>> parent of 4ea3603... Updated Scroll code
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

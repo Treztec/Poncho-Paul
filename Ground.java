@@ -14,6 +14,6 @@ public class Ground extends Animal implements SolidObject, ScrollsOnScreen
      */
     public void act() 
     {
-        
+        // Add your action code here.
     }    
 }
