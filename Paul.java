@@ -88,12 +88,8 @@ public class Paul extends Animal {
     }
 
     public void act() {
-<<<<<<< HEAD
 
         handleMotion(); //Handles the motion
-=======
-        handleMotion();
->>>>>>> parent of 4ea3603... Updated Scroll code
         if(!isOnGround()) {
             setLocation(getX(), (int)(getY()+velocity));
             velocity = velocity + GRAVITY;
@@ -140,7 +136,6 @@ public class Paul extends Animal {
         // 
         //         }
 
-<<<<<<< HEAD
     }
 
     public void handleMotion() {
@@ -163,33 +158,6 @@ public class Paul extends Animal {
             setLocation(getX(),(int)(getY()+velocity));
         }
     }
-=======
-public void handleMotion() {
-if(Greenfoot.isKeyDown(Controls.RIGHT)) {
-direction = Direction.RIGHT;
-setLocation(getX()+Speed, getY());
-advanceFrame();
-rface =true;
-lface =false;            
-}
-if(Greenfoot.isKeyDown(Controls.LEFT)) {
-direction = Direction.LEFT;
-setLocation(getX()-MOVE_SPEED, getY());
-advanceFrame();
-lface = true;
-rface = false;
-}
-if(Greenfoot.isKeyDown(Controls.UP) && isOnGround()) {
-velocity = JUMP_SPEED;
-setLocation(getX(),(int)(getY()+velocity));
-}
-}
-/*
-public void scroll(int s){
-for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
-g.setLocation(g.getX() + s, g.getY());
-}
->>>>>>> parent of 4ea3603... Updated Scroll code
 
     /*
     public void scroll(int s){
@@ -262,7 +230,6 @@ g.setLocation(g.getX() + s, g.getY());
      */
     
 
-<<<<<<< HEAD
     public boolean checkForRightWalls() {
         int spriteWidth = getImage().getWidth();
         int xDistance = spriteWidth / 2;
@@ -276,18 +243,6 @@ g.setLocation(g.getX() + s, g.getY());
         }
 
     }
-=======
-public boolean checkForRightWalls() {
-int spriteWidth = getImage().getWidth();
-int xDistance = (int) (spriteWidth / 2);
-Actor rightWall = getOneObjectAtOffset(xDistance, 0, Ground.class);
-if(rightWall == null) {
-return false;
-} else {
-stopByRightWall(rightWall);
-return true;
-}
->>>>>>> parent of 4ea3603... Updated Scroll code
 
     /**
      * gets location of right wall, stops charecter at position and sets him 5 pixels back
@@ -384,30 +339,10 @@ return true;
             canShoot = true;}
     }
 
-<<<<<<< HEAD
     /*
      * Returns a boolean for whether or not paul is facing right
      */
     public static boolean isRight(){
         return rface;
     }
-=======
-public void shootLeft() {
-if(canShoot == true) {
-int spriteWidth = getImage().getWidth();
-int gunTop = (int) spriteWidth/2;
-leftBullet lb = new leftBullet();
-getWorld().addObject(lb, getX() - gunTop - 13, getY() - 17);
-delayCounter = 0;
-canShoot = false;
-return;
-}
-if(!canShoot && ++delayCounter> SHOOT_DELAY) {
-canShoot = true;}
-}
-
-public static boolean isRight(){
-    return rface;
-}
->>>>>>> parent of 4ea3603... Updated Scroll code
 }
