@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Sand extends Animal implements SolidObject, ScrollsOnScreen
+public class Sand extends Actor implements SolidObject, ScrollsOnScreen
 {
     /**
      * Act - do whatever the Sand wants to do. This method is called whenever

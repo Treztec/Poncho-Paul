@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ CollisionCode\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.params=rightWall
+comment1.target=void\ stopByRightWall(greenfoot.Actor)
+comment1.text=\r\n\ gets\ location\ of\ right\ wall,\ stops\ charecter\ at\ position\ and\ sets\ him\ 5\ pixels\ back\r\n
+comment2.params=
+comment2.target=boolean\ checkForLeftWalls()
+comment2.text=\r\n\ checks\ if\ left\ wall\ is\ activated,\ implements\ conditions\ in\ order\ to\ apply\ or\ not\ apply\ left\ wall\ code\r\n
+comment3.params=LeftWall
+comment3.target=void\ stopByLeftWall(greenfoot.Actor)
+comment3.text=\r\n\ code\ to\ stop\ charecter\ by\ left\ walls\ and\ set\ them\ back\ 5\ pixels\r\n
+comment4.params=ceiling
+comment4.target=void\ bopHead(greenfoot.Actor)
+comment4.text=\r\n\ if\ there\ is\ a\ celing\ then\ charecter\ is\ stoped\r\n
+comment5.params=
+comment5.target=boolean\ checkForCeiling()
+comment5.text=\r\n\ charecter\ checks\ for\ ceiling,\ using\ bophead()\ to\ stop\ charecter\ from\ traversing\ ceiling\r\n
+numComments=6
