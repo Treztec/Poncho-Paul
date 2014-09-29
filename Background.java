@@ -11,15 +11,18 @@ public class Background extends World
 
     public Counter counter;
 
+    
+    
     /**
      * Constructor for objects of class background.
      * 
      */
     public Background()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 600, 1, false); 
 
+        
+        
         prepare();
     }
 

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=block\ wx\ wy
+comment0.target=WorldBlock(SolidObject,\ int,\ int)
+comment1.params=btype\ wx\ wy
+comment1.target=WorldBlock(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=SolidObject\ getBlock()
+comment3.params=
+comment3.target=int\ getWorldX()
+comment4.params=
+comment4.target=int\ getWorldY()
+numComments=5
