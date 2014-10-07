@@ -7,7 +7,7 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class ScrollingSqare extends Actor
+public abstract class ScrollingSqare extends Actor implements SpawnableObject
 {
     
     

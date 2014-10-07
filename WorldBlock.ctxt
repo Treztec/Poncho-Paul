@@ -1,12 +1,14 @@
 #BlueJ class context
 comment0.params=block\ wx\ wy
-comment0.target=WorldBlock(SolidObject,\ int,\ int)
+comment0.target=WorldBlock(SpawnableObject,\ int,\ int)
+comment0.text=\r\n\ Create\ a\ {@code\ WorldBlock}\ object\ from\ a\ {@code\ SpawnableObject}\r\n\ and\ x\ and\ y\ coordinates.\r\n\ @param\ block\ the\ SpawnableObject\r\n\ @param\ wx\ the\ x\ coordinate\r\n\ @param\ wy\ the\ y\ coordinate\r\n
 comment1.params=btype\ wx\ wy
 comment1.target=WorldBlock(java.lang.String,\ int,\ int)
 comment2.params=
-comment2.target=SolidObject\ getBlock()
+comment2.target=SpawnableObject\ getBlock()
 comment3.params=
 comment3.target=int\ getWorldX()
+comment3.text=\r\n\ Returns\ the\ x\ coordinate\ of\ the\ block.\r\n\ @return\ the\ x\ coordinate\ of\ the\ block\r\n
 comment4.params=
 comment4.target=int\ getWorldY()
 numComments=5

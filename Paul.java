@@ -7,7 +7,7 @@ import java.util.*;
  * @author  William Trent 
  * @version v1.1
  */
-public class Paul extends Animal {
+public class Paul extends Animal implements SpawnableObject{
 
     private static final double GRAVITY = 0.6;
     private static final int MOVE_SPEED = 5;
