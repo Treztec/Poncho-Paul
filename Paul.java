@@ -153,7 +153,7 @@ public class Paul extends Animal implements SpawnableObject{
             lface = true;
             rface = false;
         }
-        if(Greenfoot.isKeyDown(Controls.UP) && isOnGround()) {
+        if(Greenfoot.isKeyDown(Controls.JUMP) && isOnGround()) {
             velocity = JUMP_SPEED;
             setLocation(getX(),(int)(getY()+velocity));
         }
