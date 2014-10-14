@@ -137,25 +137,56 @@ public class Paul extends Animal implements SpawnableObject{
         //         }
 
     }
-
-    public void handleMotion() {
-        if(Greenfoot.isKeyDown(Controls.RIGHT)) {
+    
+    public void moveRight() {
             direction = Direction.RIGHT;
             setLocation(getX()+Speed, getY());
             advanceFrame();
             rface =true;
-            lface =false;            
-        }
-        if(Greenfoot.isKeyDown(Controls.LEFT)) {
+            lface =false;         
+        
+        
+        
+    }
+    
+    public void moveLeft() {
             direction = Direction.LEFT;
             setLocation(getX()-MOVE_SPEED, getY());
             advanceFrame();
             lface = true;
             rface = false;
         }
-        if(Greenfoot.isKeyDown(Controls.JUMP) && isOnGround()) {
+    
+    public void jump() {
             velocity = JUMP_SPEED;
-            setLocation(getX(),(int)(getY()+velocity));
+            setLocation(getX(),(int)(getY()+velocity));    
+        }
+    
+    
+    
+    
+    
+    public void handleMotion() {
+        if(Greenfoot.isKeyDown(Controls.RIGHT)) {
+            moveRight();
+//             direction = Direction.RIGHT;
+//             setLocation(getX()+Speed, getY());
+//             advanceFrame();
+//             rface =true;
+//             lface =false;            
+        }
+        if(Greenfoot.isKeyDown(Controls.LEFT)) {
+            moveLeft();
+//             direction = Direction.LEFT;
+//             setLocation(getX()-MOVE_SPEED, getY());
+//             advanceFrame();
+//             lface = true;
+//             rface = false;
+        }
+        if(Greenfoot.isKeyDown(Controls.JUMP) && isOnGround()) {
+            jump();
+//             velocity = JUMP_SPEED;
+//             setLocation(getX(),(int)(getY()+velocity));
         }
     }
 

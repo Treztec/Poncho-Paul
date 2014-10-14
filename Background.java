@@ -24,7 +24,16 @@ public class Background extends World
         
         
 //        prepare();
+
+
+
     loadLevel("Levels\\level1.dat");
+    loadLevel("Levels\\dog.dat");
+
+
+
+//    loadLevel("Levels\\*.dat");
+
     }
 
     public void endGame()
@@ -35,7 +44,7 @@ public class Background extends World
     }
     
     public void loadLevel(String fname) {
-        removeObjects(getObjects(null));
+       // removeObjects(getObjects(null));
         LevelLoader loader = new LevelLoader(fname);
         for(WorldBlock b : loader.getBlocks()) {
             addObject((Actor)b.getBlock(), b.getWorldX(), b.getWorldY());
