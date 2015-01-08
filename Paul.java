@@ -13,6 +13,8 @@ public class Paul extends Animal implements SpawnableObject{
     private static final int MOVE_SPEED = 5;
     private static final int JUMP_SPEED = -10; //speed of jump
 
+    private int HEALTH = 12;
+    
     private char ThatGuy;
     
     private int Delay = 50;
