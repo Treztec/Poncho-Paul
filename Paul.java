@@ -15,6 +15,8 @@ public class Paul extends Animal implements SpawnableObject{
 
     private int HEALTH = 12;
     
+    //private double hearts = HealthMeter.;
+    
     private char ThatGuy;
     
     private int Delay = 50;
