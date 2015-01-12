@@ -14,6 +14,11 @@ public class Sand extends Actor implements SolidObject, ScrollsOnScreen, Spawnab
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+       
+    }
+    
+//     public GreenfootImage getImage(){  
+//         return super.getImage();
+//     }
+
 }

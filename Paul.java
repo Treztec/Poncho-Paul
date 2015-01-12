@@ -88,7 +88,7 @@ public class Paul extends Animal implements SpawnableObject{
     }
 
     public boolean isOnGround() {
-        return getOneObjectAtOffset(0,getImage().getHeight()/2+1, Ground.class) != null;
+        return getOneObjectAtOffset(0,getImage().getHeight()/2+1, SolidObject.class) != null;
     }
 
     public void act() {
@@ -99,7 +99,7 @@ public class Paul extends Animal implements SpawnableObject{
             velocity = velocity + GRAVITY;
         }
         else {
-            Ground g = (Ground)getOneObjectAtOffset(0,getImage().getHeight()/2+1, Ground.class);
+            SolidObject g = (SolidObject)getOneObjectAtOffset(0,getImage().getHeight()/2+1, SolidObject.class);
             setLocation(getX(), g.getY()-g.getImage().getHeight()/2-getImage().getHeight()/2+1);
             velocity = 0;
 
