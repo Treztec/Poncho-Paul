@@ -1,3 +1,4 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 
@@ -23,7 +24,7 @@ public class Spree extends BadGuys
         ifFallenDisapear();
         AI();
        // Destroy();
-        Edge();
+       //Edge();
         
     }
     public void Edge() {

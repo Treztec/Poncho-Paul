@@ -39,7 +39,6 @@ comment7.params=
 comment7.target=void\ handleMotion()
 comment8.params=c
 comment8.target=boolean\ isTouching(java.lang.Class)
-comment8.text=\r\n\ \ \ \ public\ void\ scroll(int\ s){\r\n\ \ \ \ for(Ground\ g\:\ (List<Ground>)getWorld().getObjects(Ground.class)){\r\n\ \ \ \ g.setLocation(g.getX()\ +\ s,\ g.getY());\r\n\ \ \ \ }\r\n\r\n\ \ \ \ }\r\n\r\n\ \ \ \ public\ void\ scrollLCharacter(int\ s){\r\n\ \ \ \ for(Paul\ g\:\ (List<Paul>)getWorld().getObjects(Paul.class)){\r\n\ \ \ \ g.setLocation(g.getX()\ -\ s,\ g.getY());\r\n\ \ \ \ }\r\n\r\n\ \ \ \ }\r\n\r\n\ \ \ \ public\ void\ scrollRCharacter(int\ s){\r\n\ \ \ \ for(Paul\ g\:\ (List<Paul>)getWorld().getObjects(Paul.class)){\r\n\ \ \ \ g.setLocation(g.getX()\ +\ s,\ g.getY());\r\n\ \ \ \ }\r\n\r\n\ \ \ \ }\r\n
 comment9.params=
 comment9.target=boolean\ checkForRightWalls()
 comment9.text=\r\n\ it\ checks\ if\ right\ wall\ is\ activated,\ and\ implements\ the\ code\ if\ it\ fits\ conditions\ set\ by\ charecters\ enviroment\r\n

@@ -40,8 +40,6 @@ public class Paul extends Animal implements SpawnableObject{
     public static final int BG_SCROLL_RATE =1;
     public static final int FG_SCROLL_RATE = 2;
     private int time = 0;
-    //private boolean lPass = false;
-    //private boolean RPass = false;
     private boolean jnum = true;
 
     private static final GreenfootImage bullet = new GreenfootImage("haloFire.png");
@@ -91,8 +89,12 @@ public class Paul extends Animal implements SpawnableObject{
         return getOneObjectAtOffset(0,getImage().getHeight()/2+1, SolidObject.class) != null;
     }
 
+    
+    
+    
+    
+    
     public void act() {
-
         handleMotion(); //Handles the motion
         if(!isOnGround()) {
             setLocation(getX(), (int)(getY()+velocity));
@@ -103,13 +105,10 @@ public class Paul extends Animal implements SpawnableObject{
             setLocation(getX(), g.getY()-g.getImage().getHeight()/2-getImage().getHeight()/2+1);
             velocity = 0;
 
-            //scrollWithSquare();
-            //scrollWithLSquare();
-
         }
-        checkForRightWalls();
-        checkForLeftWalls();
-        checkForCeiling();
+        //checkForRightWalls();
+        //checkForLeftWalls();
+        //checkForCeiling();
         checkKeys();
     }
 
@@ -131,15 +130,6 @@ public class Paul extends Animal implements SpawnableObject{
             }
         }
 
-        // Deprecate Code
-        //         if(direction == Direction.RIGHT) {  
-        //             shootRight();
-        // 
-        //         } else {
-        //             shootLeft();
-        // 
-        //         }
-
     }
     
     public void moveRight() {
@@ -148,9 +138,6 @@ public class Paul extends Animal implements SpawnableObject{
             advanceFrame();
             rface =true;
             lface =false;         
-        
-        
-        
     }
     
     public void moveLeft() {
@@ -172,94 +159,21 @@ public class Paul extends Animal implements SpawnableObject{
     
     public void handleMotion() {
         if(Greenfoot.isKeyDown(Controls.RIGHT)) {
-            moveRight();
-//             direction = Direction.RIGHT;
-//             setLocation(getX()+Speed, getY());
-//             advanceFrame();
-//             rface =true;
-//             lface =false;            
+            moveRight();           
         }
         if(Greenfoot.isKeyDown(Controls.LEFT)) {
             moveLeft();
-//             direction = Direction.LEFT;
-//             setLocation(getX()-MOVE_SPEED, getY());
-//             advanceFrame();
-//             lface = true;
-//             rface = false;
         }
         if(Greenfoot.isKeyDown(Controls.JUMP) && isOnGround()) {
             jump();
-//             velocity = JUMP_SPEED;
-//             setLocation(getX(),(int)(getY()+velocity));
         }
-    }
-
-    /*
-    public void scroll(int s){
-    for(Ground g: (List<Ground>)getWorld().getObjects(Ground.class)){
-    g.setLocation(g.getX() + s, g.getY());
-    }
-
-    }
-
-    public void scrollLCharacter(int s){
-    for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
-    g.setLocation(g.getX() - s, g.getY());
-    }
-
-    }
-
-    public void scrollRCharacter(int s){
-    for(Paul g: (List<Paul>)getWorld().getObjects(Paul.class)){
-    g.setLocation(g.getX() + s, g.getY());
-    }
-
-    }
-    */
-   
-
+    } 
+    
     public boolean isTouching(Class c) {
         return getOneIntersectingObject(c) != null;
-    }
-
-    /*
-    public void scrollWithSquare(){
-
-    int spriteWidth = getImage().getWidth();
-    int xDistance = (int) (spriteWidth / 4);
-    Actor rightWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-    if(rightWall == null) {
-    lPass = false;
-    rPass = true;
-
-    }
-    if(isTouching(ScrollingSqare.class) && lPass == true ) {
-    scroll(-4);
-    scrollLCharacter(5);
-
-    } else{
-
-    }
-
-    }
-
-    public void scrollWithLSquare(){
-    int spriteWidth = getImage().getWidth();
-    int xDistance = (int) (spriteWidth / -4);
-    Actor LeftWall = getOneObjectAtOffset(xDistance, 0, ScrollingSqare.class);
-    if(LeftWall == null) {
-    lPass = true;
-    rPass = false;
-
-    }
-    if(isTouching(ScrollingSqare.class) && rPass == true){
-    scroll(4);
-    scrollRCharacter(5);
-    } else {
-
-    }
-    }
-    */
+       }
+    
+   
     /**
      * it checks if right wall is activated, and implements the code if it fits conditions set by charecters enviroment
      */
@@ -286,7 +200,6 @@ public class Paul extends Animal implements SpawnableObject{
         int rightWallWidth = rightWall.getImage().getWidth();
         int newX = rightWall.getX() - (rightWallWidth + getImage().getWidth())/2;
         setLocation(newX, getY());
-        //scroll(Speed);
     }
 
     /**
@@ -312,7 +225,6 @@ public class Paul extends Animal implements SpawnableObject{
         int LeftWallWidth = LeftWall.getImage().getWidth();
         int newX = LeftWall.getX() - (LeftWallWidth + getImage().getWidth())/-2;
         setLocation(newX, getY());
-        //scroll(-Speed);
     }
 
     /**
@@ -337,10 +249,8 @@ public class Paul extends Animal implements SpawnableObject{
             vSpeed = 0;
             bopHead(ceiling);
             return true;
-
         }else{
             return false;
-
         }
 
     }
