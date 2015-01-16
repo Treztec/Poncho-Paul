@@ -13,5 +13,8 @@ public class Controls
     public static final String DEBUG1 = "0";
     public static final String TURBO_ON = "";
     public static final String TURBO_OFF = "";
+    public static final String LOOK_UP = "";
+    public static final String LOOK_DOWN = "";
+    public static final String ROLL = "";
 }
 

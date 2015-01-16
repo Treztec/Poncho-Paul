@@ -5,5 +5,5 @@
  * @version (a version number or a date)
  */
 public enum Direction  {
-    LEFT, RIGHT;
+    LEFT, RIGHT, LEFTUP, RIGHTUP, LEFTDOWN, RIGHTDOWN;
 }
